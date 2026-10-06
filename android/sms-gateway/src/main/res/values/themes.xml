@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.SmsGateway" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#245BDB</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

@@ -1,0 +1,13 @@
+*
+!requirements.txt
+!requirements-dev.txt
+!pyproject.toml
+!tests/
+!tests/**
+!app/
+!app/**
+!alembic/
+!alembic/**
+!alembic.ini
+**/__pycache__/
+**/*.pyc

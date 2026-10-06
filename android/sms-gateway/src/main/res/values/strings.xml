@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OfflineWallet SMS Gateway</string>
+    <string name="foundation_status">Research prototype · Sprint 0\nGateway inactive. SMS and backend forwarding are not implemented.</string>
+</resources>

@@ -1,0 +1,80 @@
+﻿name: offlinewallet
+
+x-database: &database
+  DB_HOST: db
+  DB_PORT: "5432"
+  DB_NAME: ${DB_NAME:-offlinewallet}
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME:-offlinewallet}
+      POSTGRES_USER: ${DB_ADMIN_USER:-offlinewallet}
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:?Run backend/scripts/init-local.ps1}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  db-setup:
+    build: ./backend
+    environment:
+      <<: *database
+      DB_USER: ${DB_ADMIN_USER:-offlinewallet}
+      DB_PASSWORD: ${DB_ADMIN_PASSWORD:?Set local bootstrap password}
+      MIGRATION_DB_PASSWORD: ${MIGRATION_DB_PASSWORD:?Set local migration password}
+      RUNTIME_DB_PASSWORD: ${DB_PASSWORD:?Set local runtime password}
+    command: ["python", "-m", "app.db_roles"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  migrate:
+    build: ./backend
+    environment:
+      <<: *database
+      DB_USER: wallet_migrator
+      DB_PASSWORD: ${MIGRATION_DB_PASSWORD:?Set local migration password}
+    command: ["python", "-m", "app.migrate"]
+    depends_on:
+      db-setup:
+        condition: service_completed_successfully
+
+  backend:
+    build: ./backend
+    environment:
+      <<: *database
+      DB_USER: wallet_runtime
+      DB_PASSWORD: ${DB_PASSWORD:?Set local runtime password}
+      DEVICE_MASTER_KEY: ${DEVICE_MASTER_KEY:?Set a local random master key}
+      MAX_WALLET_BALANCE_PAISE: ${MAX_WALLET_BALANCE_PAISE:-10000}
+      MAX_PAYMENT_PAISE: ${MAX_PAYMENT_PAISE:-2000}
+      MAX_POOL_RESERVE_PAISE: ${MAX_POOL_RESERVE_PAISE:-50000}
+      ENROLLMENT_TTL_SECONDS: ${ENROLLMENT_TTL_SECONDS:-900}
+      SESSION_TTL_SECONDS: ${SESSION_TTL_SECONDS:-3600}
+      GATEWAY_SESSION_TTL_SECONDS: ${GATEWAY_SESSION_TTL_SECONDS:-86400}
+      AUTH_RATE_WINDOW_SECONDS: ${AUTH_RATE_WINDOW_SECONDS:-900}
+      LOGIN_ATTEMPT_LIMIT: ${LOGIN_ATTEMPT_LIMIT:-5}
+      LOGIN_IP_LIMIT: ${LOGIN_IP_LIMIT:-30}
+      REDEMPTION_ATTEMPT_LIMIT: ${REDEMPTION_ATTEMPT_LIMIT:-5}
+      REDEMPTION_IP_LIMIT: ${REDEMPTION_IP_LIMIT:-20}
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log", "--no-proxy-headers"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:

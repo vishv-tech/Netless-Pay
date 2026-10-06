@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_md">
+        <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/device_setup" android:textAppearance="@style/Text.Wallet.Title"/>
+        <TextView android:id="@+id/description" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/device_description" android:textAppearance="@style/Text.Wallet.Caption"/>
+        <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/device_status" android:textAppearance="@style/Text.Wallet.Heading"/>
+        <TextView android:id="@+id/details" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/device_details" android:textAppearance="@style/Text.Wallet.Caption"/>
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/labelLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:hint="@string/device_label">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/label" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="@dimen/touch_target" android:inputType="textCapWords" android:maxLength="128" android:saveEnabled="false" android:importantForAutofill="auto"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton android:id="@+id/register" style="@style/Widget.Wallet.Button" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_xs" android:text="@string/register_device"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/checkApproval" style="@style/Widget.Wallet.Outline" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_xs" android:text="@string/check_approval"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/signInAgain" style="@style/Widget.Wallet.Outline" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sign_in" android:visibility="gone"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/signOut" style="@style/Widget.Wallet.Outline" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_xs" android:text="@string/sign_out"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

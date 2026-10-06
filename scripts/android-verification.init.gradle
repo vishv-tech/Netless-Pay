@@ -1,0 +1,7 @@
+// Optional local verification output override. Sources and project location never change.
+gradle.beforeProject { project ->
+    def output = System.getenv('OFFLINEWALLET_BUILD_OUTPUT')
+    if (project.path == ':app' && output) {
+        project.layout.buildDirectory.set(new File(output))
+    }
+}

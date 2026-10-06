@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/white">
+    <TextView android:id="@+id/banner" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/space_sm" android:background="@color/pale_blue" android:textAppearance="@style/Text.Wallet.Caption" android:accessibilityLiveRegion="polite" android:visibility="gone"/>
+    <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/loading" android:layout_width="match_parent" android:layout_height="wrap_content" android:indeterminate="true" android:visibility="gone" android:contentDescription="@string/loading"/>
+    <androidx.fragment.app.FragmentContainerView android:id="@+id/destination" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/navigation" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white" app:menu="@menu/bottom_navigation" app:itemIconTint="@color/navigation_tint" app:itemTextColor="@color/navigation_tint" app:labelVisibilityMode="labeled"/>
+</LinearLayout>

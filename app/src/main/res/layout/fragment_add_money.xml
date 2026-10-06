@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_md">
+        <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/add_money" android:textAppearance="@style/Text.Wallet.Title"/>
+        <TextView android:id="@+id/subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/funding_description" android:textAppearance="@style/Text.Wallet.Caption"/>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Wallet.Card" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_md">
+                <TextView android:id="@+id/accountTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/pool_unconfigured" android:textAppearance="@style/Text.Wallet.Heading"/>
+                <TextView android:id="@+id/instructions" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/pool_instructions" android:textAppearance="@style/Text.Wallet.Body"/>
+                <TextView android:id="@+id/verification" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/manual_credit" android:textAppearance="@style/Text.Wallet.Caption"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/funding" style="@style/Widget.Wallet.Outline" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_xs" android:text="@string/funding_unavailable" android:enabled="false"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

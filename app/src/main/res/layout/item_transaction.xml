@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_sm" android:layout_marginBottom="@dimen/space_xs" android:background="@color/surface">
+    <TextView android:id="@+id/kind" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/transaction" android:textAppearance="@style/Text.Wallet.Body"/>
+    <TextView android:id="@+id/amount" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/not_confirmed" android:textAppearance="@style/Text.Wallet.Heading"/>
+    <TextView android:id="@+id/date" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_sm" android:text="@string/not_confirmed" android:textAppearance="@style/Text.Wallet.Caption"/>
+</LinearLayout>

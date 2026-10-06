@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.OfflineWallet" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/cobalt</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/cobalt</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/navy</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">@color/cobalt</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="materialButtonStyle">@style/Widget.Wallet.Button</item>
+        <item name="textInputStyle">@style/Widget.Wallet.Input</item>
+    </style>
+    <style name="Theme.OfflineWallet" parent="Base.Theme.OfflineWallet"/>
+</resources>
